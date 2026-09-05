@@ -168,8 +168,8 @@
   <!-- Método -->
   <section id="metodo" class="bg-ink py-16 lg:py-20">
     <div class="mx-auto max-w-[1400px] px-5 lg:px-10">
-      <div class="grid gap-10 lg:grid-cols-[0.9fr_1.3fr] lg:gap-16">
-        <div class="lg:sticky lg:top-28 lg:self-start">
+      <div class="grid gap-10 lg:grid-cols-[0.95fr_1.15fr] lg:gap-14 lg:items-start">
+        <div class="lg:sticky lg:top-28">
           <p class="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-orange">
             O método
           </p>
@@ -193,6 +193,15 @@
             </svg>
             Começar pelo WhatsApp
           </a>
+
+          <figure class="metodo-photo mt-8 overflow-hidden border border-white/8">
+            <img
+              src="/foto2.jpeg"
+              alt="Hudson Arruda — Emagrecimento e Hipertrofia"
+              class="block h-auto w-full object-cover"
+              loading="lazy"
+            />
+          </figure>
         </div>
 
         <div>
@@ -281,6 +290,93 @@
     </div>
   </section>
 
+  <!-- Vídeos -->
+  <section id="videos" class="border-t border-white/5 bg-ink-soft py-16 lg:py-20">
+    <div class="mx-auto max-w-[1400px] px-5 lg:px-10">
+      <div class="max-w-lg">
+        <p class="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-orange">
+          Na prática
+        </p>
+        <h2 class="font-display mt-2 text-[clamp(2rem,5vw,3rem)] leading-[1.05] text-cream">
+          Conheça a <span class="text-orange">consultoria</span>
+        </h2>
+        <p class="mt-3 text-sm text-muted">
+          Veja como funciona o acompanhamento e o clima das aulas.
+        </p>
+      </div>
+
+      <div class="mt-10 grid gap-10 sm:gap-8 lg:grid-cols-2 lg:gap-12 lg:justify-items-center">
+        <article class="video-card">
+          <div class="video-frame">
+            <video
+              controls
+              playsinline
+              preload="metadata"
+              (loadedmetadata)="showVideoStart($event)"
+              aria-label="Vídeo explicativo da consultoria"
+            >
+              <source src="/videoexplicativo.mp4#t=0.1" type="video/mp4" />
+              Seu navegador não suporta vídeo.
+            </video>
+          </div>
+          <div class="video-meta">
+            <div>
+              <p class="text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-orange">
+                Consultoria
+              </p>
+              <h3 class="font-display mt-1 text-2xl text-cream">Como funciona</h3>
+              <p class="mt-1.5 text-sm text-muted">
+                Entenda o método de acompanhamento, treino e nutrição.
+              </p>
+            </div>
+            <a
+              [href]="whatsappUrl('Olá Hudson! Vi o vídeo da consultoria e quero saber mais. Podemos conversar?')"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-cta btn-cta-sm"
+            >
+              Quero essa consultoria
+            </a>
+          </div>
+        </article>
+
+        <article class="video-card">
+          <div class="video-frame">
+            <video
+              controls
+              playsinline
+              preload="metadata"
+              (loadedmetadata)="showVideoStart($event)"
+              aria-label="Vídeo da aula de bike"
+            >
+              <source src="/videoaulabike.mp4#t=0.1" type="video/mp4" />
+              Seu navegador não suporta vídeo.
+            </video>
+          </div>
+          <div class="video-meta">
+            <div>
+              <p class="text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-orange">
+                Aula de bike
+              </p>
+              <h3 class="font-display mt-1 text-2xl text-cream">Energia na prática</h3>
+              <p class="mt-1.5 text-sm text-muted">
+                Um gostinho das aulas — intensidade, ritmo e motivação.
+              </p>
+            </div>
+            <a
+              [href]="whatsappUrl('Olá Hudson! Vi o vídeo da aula de bike e quero treinar com você. Podemos agendar?')"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-cta btn-cta-sm"
+            >
+              Quero treinar assim
+            </a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <!-- Resultados — carrossel de fotos -->
   <section id="resultados" class="border-t border-white/5 bg-ink-soft py-16 lg:py-20">
     <div class="mx-auto max-w-[1400px]">
@@ -293,11 +389,11 @@
             Quem treina, <span class="text-orange">transforma</span>
           </h2>
           <p class="mt-3 text-sm text-muted">
-            Deslize e veja as transformações dos alunos.
+            Resultado real de aluno. Mande mais fotos que a gente adiciona no carrossel.
           </p>
         </div>
 
-        <div class="flex gap-2">
+        <div class="flex gap-2" [class.hidden]="results.length < 2">
           <button
             type="button"
             class="flex h-10 w-10 items-center justify-center border border-white/15 text-cream transition hover:border-orange hover:text-orange"
@@ -335,7 +431,7 @@
         }
       </div>
 
-      <div class="mt-4 flex justify-center gap-2 px-5">
+      <div class="mt-4 flex justify-center gap-2 px-5" [class.hidden]="results.length < 2">
         @for (result of results; track result.id; let i = $index) {
           <button
             type="button"

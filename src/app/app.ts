@@ -25,22 +25,51 @@ export class App {
   readonly navLinks = [
     { label: 'Início', href: '#inicio' },
     { label: 'Método', href: '#metodo' },
+    { label: 'Vídeos', href: '#videos' },
     { label: 'Resultados', href: '#resultados' },
     { label: 'Sobre', href: '#sobre' },
   ];
 
-  /** Troque os SVGs por fotos reais dos alunos em /public/resultados/ */
   readonly results: ResultPhoto[] = [
-    { id: '1', image: '/resultados/1.svg', name: 'Aluno 1', goal: 'Emagrecimento' },
-    { id: '2', image: '/resultados/2.svg', name: 'Aluno 2', goal: 'Hipertrofia' },
-    { id: '3', image: '/resultados/3.svg', name: 'Aluno 3', goal: 'Recomposição' },
-    { id: '4', image: '/resultados/4.svg', name: 'Aluno 4', goal: 'Emagrecimento' },
-    { id: '5', image: '/resultados/5.svg', name: 'Aluno 5', goal: 'Hipertrofia' },
+    {
+      id: '1',
+      image: '/foto3.jpeg',
+      name: 'Desafio de emagrecimento',
+      goal: '-2,9 kg em 15 dias',
+    },
   ];
 
   @HostListener('window:scroll')
   onScroll(): void {
     this.scrolled.set(window.scrollY > 20);
+  }
+
+  /** Mostra o início do vídeo como capa (sem poster externo). */
+  showVideoStart(event: Event): void {
+    const video = event.target as HTMLVideoElement;
+    if (!video || video.dataset['framed'] === '1') return;
+
+    const setFrame = () => {
+      if (video.dataset['framed'] === '1') return;
+      try {
+        video.currentTime = 0.15;
+      } catch {
+        /* ignore seek errors before ready */
+      }
+    };
+
+    const lockFrame = () => {
+      if (video.dataset['framed'] === '1') return;
+      video.pause();
+      video.dataset['framed'] = '1';
+    };
+
+    video.addEventListener('seeked', lockFrame, { once: true });
+    if (video.readyState >= 1) {
+      setFrame();
+    } else {
+      video.addEventListener('loadedmetadata', setFrame, { once: true });
+    }
   }
 
   whatsappUrl(customMessage?: string): string {
