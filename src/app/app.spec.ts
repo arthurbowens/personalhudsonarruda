@@ -14,11 +14,10 @@ describe('App', () => {
     expect(app).toBeTruthy();
   });
 
-  it('should render Hudson Arruda brand', async () => {
+  it('should render benefit headline in hero', async () => {
     const fixture = TestBed.createComponent(App);
     await fixture.whenStable();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('HUDSON');
-    expect(compiled.querySelector('h1')?.textContent).toContain('ARRUDA');
+    expect(compiled.querySelector('h1')?.textContent).toContain('método');
   });
 });

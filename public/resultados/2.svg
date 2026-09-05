@@ -1,0 +1,12 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a1210"/>
+      <stop offset="100%" stop-color="#0a0a0a"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="1000" fill="url(#g)"/>
+  <rect x="40" y="40" width="720" height="920" fill="none" stroke="#ff5c00" stroke-width="2" opacity="0.35"/>
+  <text x="400" y="480" text-anchor="middle" fill="#ff5c00" font-family="Arial,sans-serif" font-size="28" font-weight="700">FOTO DO ALUNO</text>
+  <text x="400" y="530" text-anchor="middle" fill="#a8a29e" font-family="Arial,sans-serif" font-size="18">Substitua em /resultados/</text>
+</svg>

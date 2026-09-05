@@ -1,21 +1,26 @@
 <!-- Header -->
 <header
-  class="fixed inset-x-0 top-0 z-50 transition-colors duration-300"
-  [class.bg-ink/90]="scrolled() || menuOpen()"
+  class="fixed inset-x-0 top-0 z-50 transition-all duration-300"
+  [class.bg-ink/95]="scrolled() || menuOpen()"
   [class.backdrop-blur-md]="scrolled() || menuOpen()"
   [class.border-b]="scrolled() || menuOpen()"
   [class.border-white/5]="scrolled() || menuOpen()"
 >
-  <div class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 lg:px-8">
-    <a href="#inicio" class="font-display text-2xl tracking-wide text-cream" (click)="closeMenu()">
-      HUDSON <span class="text-orange">ARRUDA</span>
+  <div class="mx-auto flex max-w-[1400px] items-center justify-between px-5 py-4 lg:px-10">
+    <a href="#inicio" class="group flex flex-col leading-none" (click)="closeMenu()">
+      <span class="font-display text-xl tracking-wide text-cream sm:text-2xl">
+        HUDSON <span class="text-orange">ARRUDA</span>
+      </span>
+      <span class="mt-0.5 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-muted">
+        Personal Trainer
+      </span>
     </a>
 
-    <nav class="hidden items-center gap-8 md:flex" aria-label="Principal">
+    <nav class="hidden items-center gap-8 lg:flex" aria-label="Principal">
       @for (link of navLinks; track link.href) {
         <a
           [href]="link.href"
-          class="text-sm font-medium text-muted transition-colors hover:text-cream"
+          class="text-sm font-medium tracking-wide text-muted transition-colors hover:text-cream"
         >
           {{ link.label }}
         </a>
@@ -24,20 +29,20 @@
         [href]="whatsappUrl()"
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-flex items-center gap-2 rounded-sm bg-orange px-4 py-2.5 text-sm font-semibold text-ink transition hover:bg-orange-hot"
+        class="btn-cta"
       >
         <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
           <path
             d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
           />
         </svg>
-        Agendar
+        Quero treinar
       </a>
     </nav>
 
     <button
       type="button"
-      class="relative z-50 flex h-11 w-11 flex-col items-center justify-center gap-[5px] md:hidden"
+      class="relative z-50 flex h-11 w-11 flex-col items-center justify-center gap-[5px] lg:hidden"
       [class.hamburger-open]="menuOpen()"
       (click)="toggleMenu()"
       [attr.aria-expanded]="menuOpen()"
@@ -50,17 +55,16 @@
     </button>
   </div>
 
-  <!-- Mobile menu -->
   <div
     id="mobile-menu"
-    class="menu-panel absolute inset-x-0 top-full border-b border-white/5 bg-ink/95 px-5 py-6 backdrop-blur-md md:hidden"
+    class="menu-panel absolute inset-x-0 top-full border-b border-white/5 bg-ink/98 px-5 py-6 backdrop-blur-md lg:hidden"
     [attr.data-open]="menuOpen()"
   >
     <nav class="flex flex-col gap-1" aria-label="Mobile">
       @for (link of navLinks; track link.href) {
         <a
           [href]="link.href"
-          class="rounded-sm px-3 py-3 text-base font-medium text-cream hover:bg-white/5"
+          class="px-2 py-3 text-lg font-medium text-cream"
           (click)="closeMenu()"
         >
           {{ link.label }}
@@ -70,475 +74,412 @@
         [href]="whatsappUrl()"
         target="_blank"
         rel="noopener noreferrer"
-        class="mt-3 inline-flex items-center justify-center gap-2 rounded-sm bg-orange px-4 py-3.5 text-sm font-semibold text-ink"
+        class="btn-cta mt-4 w-full justify-center"
         (click)="closeMenu()"
-      >
-        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path
-            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
-          />
-        </svg>
-        Agendar no WhatsApp
-      </a>
-    </nav>
-  </div>
-</header>
-
-<main>
-  <!-- Hero -->
-  <section id="inicio" class="hero-glow relative min-h-dvh overflow-hidden pt-20">
-    <div class="noise pointer-events-none absolute inset-0 opacity-40" aria-hidden="true"></div>
-
-    <div
-      class="relative mx-auto grid min-h-[calc(100dvh-5rem)] max-w-6xl items-center gap-10 px-5 py-12 lg:grid-cols-2 lg:gap-16 lg:px-8 lg:py-16"
-    >
-      <div class="fade-up order-2 text-center lg:order-1 lg:text-left">
-        <p class="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-orange">
-          Personal Trainer · CREF 075179-G/SP
-        </p>
-        <h1 class="font-display text-[clamp(3.5rem,12vw,6.5rem)] leading-[0.9] text-cream">
-          HUDSON<br /><span class="text-orange">ARRUDA</span>
-        </h1>
-        <p class="mx-auto mt-5 max-w-md text-base leading-relaxed text-muted lg:mx-0 lg:text-lg">
-          Emagrecimento e hipertrofia com treino + nutrição. Método profissional para quem quer
-          resultado de verdade — sem enrolação.
-        </p>
-        <div class="mt-8 flex flex-col items-center gap-3 sm:flex-row lg:justify-start">
-          <a
-            [href]="whatsappUrl()"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="cta-pulse inline-flex w-full items-center justify-center gap-2 rounded-sm bg-orange px-7 py-4 text-base font-bold text-ink transition hover:bg-orange-hot sm:w-auto"
-          >
-            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path
-                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
-              />
-            </svg>
-            Agendar no WhatsApp
-          </a>
-          <a
-            href="#metodo"
-            class="inline-flex w-full items-center justify-center gap-2 rounded-sm border border-white/15 px-7 py-4 text-base font-semibold text-cream transition hover:border-orange/50 hover:text-orange sm:w-auto"
-          >
-            Conhecer o método
-          </a>
-        </div>
-      </div>
-
-      <div class="fade-up-delay order-1 flex justify-center lg:order-2 lg:justify-end">
-        <div class="relative">
-          <div
-            class="absolute -inset-6 rounded-full bg-orange/20 blur-2xl"
-            aria-hidden="true"
-          ></div>
-          <img
-            src="/foto1.jpg"
-            alt="Hudson Arruda, personal trainer"
-            width="420"
-            height="420"
-            class="photo-ring relative h-[min(72vw,340px)] w-[min(72vw,340px)] rounded-full object-cover object-top lg:h-[400px] lg:w-[400px]"
-            fetchpriority="high"
-          />
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- USP strip -->
-  <section class="border-y border-white/5 bg-ink-soft" aria-label="Credenciais">
-    <div
-      class="mx-auto grid max-w-6xl gap-6 px-5 py-8 sm:grid-cols-3 sm:gap-4 lg:px-8"
-    >
-      <div class="flex items-start gap-3">
-        <span
-          class="flex h-11 w-11 shrink-0 items-center justify-center rounded-sm bg-orange/15 text-orange"
-        >
-          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="m9 12 2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </span>
-        <div>
-          <p class="font-semibold text-cream">CREF 075179-G/SP</p>
-          <p class="mt-0.5 text-sm text-muted">Registro profissional ativo</p>
-        </div>
-      </div>
-      <div class="flex items-start gap-3">
-        <span
-          class="flex h-11 w-11 shrink-0 items-center justify-center rounded-sm bg-orange/15 text-orange"
-        >
-          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-            <path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </span>
-        <div>
-          <p class="font-semibold text-cream">Servidor público</p>
-          <p class="mt-0.5 text-sm text-muted">Estadual e municipal</p>
-        </div>
-      </div>
-      <div class="flex items-start gap-3">
-        <span
-          class="flex h-11 w-11 shrink-0 items-center justify-center rounded-sm bg-orange/15 text-orange"
-        >
-          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-            <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" stroke-linecap="round"/>
-            <circle cx="12" cy="12" r="3"/>
-          </svg>
-        </span>
-        <div>
-          <p class="font-semibold text-cream">Treino + Nutrição</p>
-          <p class="mt-0.5 text-sm text-muted">Acompanhamento completo</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Método / Serviços -->
-  <section id="metodo" class="relative bg-ink py-20 lg:py-28">
-    <div class="mx-auto max-w-6xl px-5 lg:px-8">
-      <div class="max-w-2xl">
-        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-orange">O método</p>
-        <h2 class="font-display mt-2 text-5xl text-cream sm:text-6xl">
-          RESULTADO COM <span class="text-orange">DIREÇÃO</span>
-        </h2>
-        <p class="mt-4 text-base leading-relaxed text-muted sm:text-lg">
-          Não é treino genérico. É um plano feito para o seu corpo, a sua rotina e o seu objetivo —
-          com acompanhamento de quem entende de performance e consistência.
-        </p>
-      </div>
-
-      <div class="mt-12 grid gap-6 md:grid-cols-3">
-        <!-- Emagrecimento -->
-        <article class="group relative overflow-hidden border border-white/8 bg-ink-elevated p-7 transition hover:border-orange/40">
-          <div
-            class="absolute -right-8 -top-8 h-28 w-28 rounded-full bg-orange/10 transition group-hover:bg-orange/20"
-            aria-hidden="true"
-          ></div>
-          <span class="relative flex h-12 w-12 items-center justify-center rounded-sm bg-orange text-ink">
-            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1.5-2.5S8 8.12 8 6.5a2.5 2.5 0 0 1 5 0" stroke-linecap="round"/>
-              <path d="M12 2c-2.5 2-4 4.5-4 7.5 0 3.5 2.5 6 4 8.5 1.5-2.5 4-5 4-8.5C16 6.5 14.5 4 12 2z" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M12 22v-4" stroke-linecap="round"/>
-            </svg>
-          </span>
-          <h3 class="font-display relative mt-5 text-3xl text-cream">EMAGRECIMENTO</h3>
-          <p class="relative mt-3 text-sm leading-relaxed text-muted">
-            Estratégia para reduzir gordura com treino inteligente e orientação nutricional —
-            preservando massa magra e energia.
-          </p>
-          <a
-            [href]="whatsappGoalUrl('emagrecimento')"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="relative mt-6 inline-flex items-center gap-2 text-sm font-semibold text-orange transition hover:text-orange-hot"
-          >
-            Quero emagrecer
-            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path d="M5 12h14M13 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
-        </article>
-
-        <!-- Hipertrofia -->
-        <article class="group relative overflow-hidden border border-white/8 bg-ink-elevated p-7 transition hover:border-orange/40">
-          <div
-            class="absolute -right-8 -top-8 h-28 w-28 rounded-full bg-orange/10 transition group-hover:bg-orange/20"
-            aria-hidden="true"
-          ></div>
-          <span class="relative flex h-12 w-12 items-center justify-center rounded-sm bg-orange text-ink">
-            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path d="M6 6h2v12H6zM16 6h2v12h-2zM8 10h8M8 14h8" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M4 9v6M20 9v6" stroke-linecap="round"/>
-            </svg>
-          </span>
-          <h3 class="font-display relative mt-5 text-3xl text-cream">HIPERTROFIA</h3>
-          <p class="relative mt-3 text-sm leading-relaxed text-muted">
-            Progressão de carga, volume certo e recuperação. Construa músculo com método, não com
-            improviso.
-          </p>
-          <a
-            [href]="whatsappGoalUrl('hipertrofia')"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="relative mt-6 inline-flex items-center gap-2 text-sm font-semibold text-orange transition hover:text-orange-hot"
-          >
-            Quero ganhar massa
-            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path d="M5 12h14M13 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
-        </article>
-
-        <!-- Treino + Nutrição -->
-        <article class="group relative overflow-hidden border border-orange/30 bg-gradient-to-b from-orange/15 to-ink-elevated p-7 transition hover:border-orange">
-          <div
-            class="absolute -right-8 -top-8 h-28 w-28 rounded-full bg-orange/20"
-            aria-hidden="true"
-          ></div>
-          <span class="relative flex h-12 w-12 items-center justify-center rounded-sm bg-orange text-ink">
-            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path d="M12 2v8M8 6h8" stroke-linecap="round"/>
-              <path d="M6 10c0 4 2.5 7 6 10 3.5-3 6-6 6-10H6z" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M9 14h6" stroke-linecap="round"/>
-            </svg>
-          </span>
-          <h3 class="font-display relative mt-5 text-3xl text-cream">TREINO + NUTRIÇÃO</h3>
-          <p class="relative mt-3 text-sm leading-relaxed text-muted">
-            O combo que acelera resultados: plano de treino alinhado à alimentação, com suporte
-            contínuo no seu ritmo.
-          </p>
-          <a
-            [href]="whatsappGoalUrl('treino e nutrição')"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="relative mt-6 inline-flex items-center gap-2 text-sm font-semibold text-orange transition hover:text-orange-hot"
-          >
-            Quero o acompanhamento completo
-            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path d="M5 12h14M13 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- Resultados carousel -->
-  <section id="resultados" class="border-t border-white/5 bg-ink-soft py-20 lg:py-28">
-    <div class="mx-auto max-w-6xl px-5 lg:px-8">
-      <div class="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-        <div class="max-w-xl">
-          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-orange">Resultados</p>
-          <h2 class="font-display mt-2 text-5xl text-cream sm:text-6xl">
-            QUEM TREINA, <span class="text-orange">TRANSFORMA</span>
-          </h2>
-          <p class="mt-4 text-base text-muted">
-            Histórias reais de alunos que saíram da intenção e entraram no processo.
-          </p>
-        </div>
-        <div class="hidden gap-2 sm:flex">
-          <button
-            type="button"
-            class="flex h-11 w-11 items-center justify-center rounded-sm border border-white/15 text-cream transition hover:border-orange hover:text-orange"
-            (click)="prevResult()"
-            aria-label="Resultado anterior"
-          >
-            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path d="M19 12H5M12 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
-          <button
-            type="button"
-            class="flex h-11 w-11 items-center justify-center rounded-sm border border-white/15 text-cream transition hover:border-orange hover:text-orange"
-            (click)="nextResult()"
-            aria-label="Próximo resultado"
-          >
-            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
-        </div>
-      </div>
-
-      <div
-        #resultsTrack
-        class="results-track mt-10"
-        (scroll)="onResultsScroll($event)"
-      >
-        @for (result of results; track result.id; let i = $index) {
-          <article class="result-slide border border-white/8 bg-ink p-6">
-            <div class="flex items-center justify-between gap-3">
-              <span
-                class="inline-flex items-center gap-1.5 rounded-sm bg-orange/15 px-2.5 py-1 text-xs font-semibold uppercase tracking-wide text-orange"
-              >
-                <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                  <path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                {{ result.goal }}
-              </span>
-              <span class="text-xs text-muted">{{ result.period }}</span>
-            </div>
-            <p class="font-display mt-5 text-5xl text-orange">{{ result.metric }}</p>
-            <p class="mt-2 text-lg font-semibold text-cream">{{ result.name }}</p>
-            <p class="mt-3 text-sm leading-relaxed text-muted">{{ result.detail }}</p>
-          </article>
-        }
-      </div>
-
-      <div class="mt-6 flex items-center justify-between sm:justify-center">
-        <div class="flex gap-2 sm:hidden">
-          <button
-            type="button"
-            class="flex h-10 w-10 items-center justify-center rounded-sm border border-white/15 text-cream"
-            (click)="scrollResult(-1)"
-            aria-label="Anterior"
-          >
-            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path d="M19 12H5M12 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
-          <button
-            type="button"
-            class="flex h-10 w-10 items-center justify-center rounded-sm border border-white/15 text-cream"
-            (click)="scrollResult(1)"
-            aria-label="Próximo"
-          >
-            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
-        </div>
-        <div class="flex gap-2">
-          @for (result of results; track result.id; let i = $index) {
-            <button
-              type="button"
-              class="h-2 w-2 rounded-full transition"
-              [class.bg-orange]="resultIndex() === i"
-              [class.bg-white/25]="resultIndex() !== i"
-              (click)="goToResult(i); scrollToResult(i)"
-              [attr.aria-label]="'Ir para resultado ' + (i + 1)"
-            ></button>
-          }
-        </div>
-      </div>
-
-      <div class="mt-10 text-center">
-        <a
-          [href]="whatsappUrl('Olá Hudson! Quero resultados como os dos seus alunos. Podemos agendar?')"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 rounded-sm bg-orange px-7 py-4 text-base font-bold text-ink transition hover:bg-orange-hot"
-        >
-          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path
-              d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
-            />
-          </svg>
-          Quero meu resultado
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Sobre -->
-  <section id="sobre" class="bg-ink py-20 lg:py-28">
-    <div class="mx-auto grid max-w-6xl items-center gap-12 px-5 lg:grid-cols-2 lg:gap-16 lg:px-8">
-      <div>
-        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-orange">Sobre o personal</p>
-        <h2 class="font-display mt-2 text-5xl text-cream sm:text-6xl">
-          PROFISSIONAL. <span class="text-orange">COMPROMETIDO.</span>
-        </h2>
-        <p class="mt-5 text-base leading-relaxed text-muted sm:text-lg">
-          Hudson Arruda é personal trainer registrado (CREF 075179-G/SP) e servidor público estadual
-          e municipal. Essa combinação entrega o que muita gente procura: conhecimento técnico com
-          disciplina e responsabilidade de quem leva o trabalho a sério.
-        </p>
-        <ul class="mt-8 space-y-4">
-          <li class="flex items-start gap-3">
-            <span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-sm bg-orange/15 text-orange">
-              <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
-                <path d="M20 6 9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </span>
-            <span class="text-sm text-cream sm:text-base">
-              Credencial CREF — atuação legal e ética como personal trainer
-            </span>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-sm bg-orange/15 text-orange">
-              <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
-                <path d="M20 6 9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </span>
-            <span class="text-sm text-cream sm:text-base">
-              Foco em emagrecimento, hipertrofia e recomposição corporal
-            </span>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-sm bg-orange/15 text-orange">
-              <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
-                <path d="M20 6 9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </span>
-            <span class="text-sm text-cream sm:text-base">
-              Treino integrado à nutrição para acelerar e sustentar o progresso
-            </span>
-          </li>
-        </ul>
-      </div>
-
-      <div
-        class="relative overflow-hidden border border-orange/25 bg-gradient-to-br from-orange/20 via-ink-elevated to-ink p-8 sm:p-10"
-      >
-        <div class="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-orange/20 blur-2xl" aria-hidden="true"></div>
-        <h3 class="font-display relative text-4xl text-cream sm:text-5xl">PRONTO PARA COMEÇAR?</h3>
-        <p class="relative mt-4 text-sm leading-relaxed text-muted sm:text-base">
-          Manda uma mensagem no WhatsApp e vamos alinhar seu objetivo, sua rotina e o melhor
-          caminho para o seu corpo.
-        </p>
-        <a
-          [href]="whatsappUrl()"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="cta-pulse relative mt-8 inline-flex w-full items-center justify-center gap-2 rounded-sm bg-orange px-6 py-4 text-base font-bold text-ink transition hover:bg-orange-hot sm:w-auto"
-        >
-          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path
-              d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
-            />
-          </svg>
-          Falar com Hudson agora
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Final CTA -->
-  <section class="relative overflow-hidden border-t border-white/5 bg-ink-soft py-16 lg:py-20">
-    <div
-      class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,92,0,0.18),transparent_60%)]"
-      aria-hidden="true"
-    ></div>
-    <div class="relative mx-auto max-w-3xl px-5 text-center lg:px-8">
-      <h2 class="font-display text-5xl text-cream sm:text-6xl">
-        SEU PRÓXIMO PASSO É UMA <span class="text-orange">MENSAGEM</span>
-      </h2>
-      <p class="mx-auto mt-4 max-w-lg text-muted">
-        Agende pelo WhatsApp e comece com clareza: objetivo, plano e acompanhamento.
-      </p>
-      <a
-        [href]="whatsappUrl()"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="cta-pulse mt-8 inline-flex items-center gap-2 rounded-sm bg-orange px-8 py-4 text-lg font-bold text-ink transition hover:bg-orange-hot"
       >
         <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
           <path
             d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
           />
         </svg>
-        Agendar no WhatsApp
+        Quero treinar agora
+      </a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- Hero full-bleed -->
+  <section id="inicio" class="hero">
+    <div class="hero-copy order-2 lg:order-1">
+      <div class="fade-up mx-auto w-full max-w-lg lg:mx-0">
+        <div class="mb-4 flex items-center gap-3">
+          <span class="h-px w-7 bg-orange"></span>
+          <p class="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-orange">
+            CREF 075179-G/SP
+          </p>
+        </div>
+
+        <h1 class="font-display text-[clamp(2.4rem,7vw,3.75rem)] leading-[1.05] text-cream">
+          Emagreça ou ganhe massa com <span class="text-orange">método</span>
+        </h1>
+
+        <p class="fade-up-delay mt-4 max-w-md text-[0.95rem] leading-relaxed text-muted">
+          Treino + nutrição personalizados. Resultado real, sem enrolação — com acompanhamento
+          profissional do começo ao fim.
+        </p>
+
+        <div class="fade-up-delay-2 mt-7 flex flex-col gap-3 sm:flex-row sm:items-stretch">
+          <a
+            [href]="whatsappUrl()"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-cta btn-cta-lg cta-pulse w-full sm:w-auto"
+          >
+            <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+              />
+            </svg>
+            Quero meu plano no WhatsApp
+          </a>
+          <a href="#resultados" class="btn-ghost w-full sm:w-auto">
+            Ver transformações
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-media order-1 lg:order-2">
+      <img
+        src="/foto1.jpg"
+        alt="Hudson Arruda, personal trainer"
+        width="900"
+        height="1200"
+        fetchpriority="high"
+      />
+    </div>
+    <div class="hero-accent" aria-hidden="true"></div>
+  </section>
+
+  <!-- Marquee credentials -->
+  <div class="marquee" aria-label="Credenciais">
+    <div class="marquee-track">
+      @for (i of [1, 2]; track i) {
+        <div class="marquee-item">
+          <span class="marquee-dot"></span> CREF 075179-G/SP
+        </div>
+        <div class="marquee-item">
+          <span class="marquee-dot"></span> Servidor Público Estadual e Municipal
+        </div>
+        <div class="marquee-item">
+          <span class="marquee-dot"></span> Emagrecimento
+        </div>
+        <div class="marquee-item">
+          <span class="marquee-dot"></span> Hipertrofia
+        </div>
+        <div class="marquee-item">
+          <span class="marquee-dot"></span> Treino + Nutrição
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- Método -->
+  <section id="metodo" class="bg-ink py-16 lg:py-20">
+    <div class="mx-auto max-w-[1400px] px-5 lg:px-10">
+      <div class="grid gap-10 lg:grid-cols-[0.9fr_1.3fr] lg:gap-16">
+        <div class="lg:sticky lg:top-28 lg:self-start">
+          <p class="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-orange">
+            O método
+          </p>
+          <h2 class="font-display mt-2 text-[clamp(2rem,5vw,3rem)] leading-[1.05] text-cream">
+            Direção. Disciplina.<br /><span class="text-orange">Resultado.</span>
+          </h2>
+          <p class="mt-4 max-w-md text-sm leading-relaxed text-muted sm:text-[0.95rem]">
+            Plano feito para o seu corpo e a sua rotina. Treino alinhado à nutrição, com
+            acompanhamento de quem leva o trabalho a sério.
+          </p>
+          <a
+            [href]="whatsappUrl()"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-cta mt-6"
+          >
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+              />
+            </svg>
+            Começar pelo WhatsApp
+          </a>
+        </div>
+
+        <div>
+          <article class="service-panel">
+            <span class="service-num" aria-hidden="true">01</span>
+            <div class="mt-3 md:mt-0">
+              <div class="flex items-center gap-3">
+                <span class="flex h-9 w-9 items-center justify-center bg-orange text-ink">
+                  <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M12 2c-2.5 2-4 4.5-4 7.5 0 3.5 2.5 6 4 8.5 1.5-2.5 4-5 4-8.5C16 6.5 14.5 4 12 2z" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M12 22v-4" stroke-linecap="round"/>
+                  </svg>
+                </span>
+                <h3 class="font-display text-2xl text-cream sm:text-[1.75rem]">EMAGRECIMENTO</h3>
+              </div>
+              <p class="mt-2 max-w-lg text-sm leading-relaxed text-muted">
+                Estratégia para reduzir gordura com treino inteligente e orientação nutricional —
+                preservando massa magra e energia.
+              </p>
+            </div>
+            <a
+              [href]="whatsappGoalUrl('emagrecimento')"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-cta btn-cta-sm mt-4 self-start md:mt-0"
+            >
+              Quero emagrecer
+            </a>
+          </article>
+
+          <article class="service-panel">
+            <span class="service-num" aria-hidden="true">02</span>
+            <div class="mt-3 md:mt-0">
+              <div class="flex items-center gap-3">
+                <span class="flex h-9 w-9 items-center justify-center bg-orange text-ink">
+                  <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M6 6h2v12H6zM16 6h2v12h-2zM8 10h8M8 14h8" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M4 9v6M20 9v6" stroke-linecap="round"/>
+                  </svg>
+                </span>
+                <h3 class="font-display text-2xl text-cream sm:text-[1.75rem]">HIPERTROFIA</h3>
+              </div>
+              <p class="mt-2 max-w-lg text-sm leading-relaxed text-muted">
+                Progressão de carga, volume certo e recuperação. Construa músculo com método, não
+                com improviso.
+              </p>
+            </div>
+            <a
+              [href]="whatsappGoalUrl('hipertrofia')"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-cta btn-cta-sm mt-4 self-start md:mt-0"
+            >
+              Quero ganhar massa
+            </a>
+          </article>
+
+          <article class="service-panel">
+            <span class="service-num" aria-hidden="true">03</span>
+            <div class="mt-3 md:mt-0">
+              <div class="flex items-center gap-3">
+                <span class="flex h-9 w-9 items-center justify-center bg-orange text-ink">
+                  <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M12 2v8M8 6h8" stroke-linecap="round"/>
+                    <path d="M6 10c0 4 2.5 7 6 10 3.5-3 6-6 6-10H6z" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <h3 class="font-display text-2xl text-cream sm:text-[1.75rem]">TREINO + NUTRIÇÃO</h3>
+              </div>
+              <p class="mt-2 max-w-lg text-sm leading-relaxed text-muted">
+                O combo que acelera resultados: plano de treino alinhado à alimentação, com suporte
+                contínuo no seu ritmo.
+              </p>
+            </div>
+            <a
+              [href]="whatsappGoalUrl('treino e nutrição')"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-cta btn-cta-sm mt-4 self-start md:mt-0"
+            >
+              Quero o completo
+            </a>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Resultados — carrossel de fotos -->
+  <section id="resultados" class="border-t border-white/5 bg-ink-soft py-16 lg:py-20">
+    <div class="mx-auto max-w-[1400px]">
+      <div class="flex flex-col gap-5 px-5 sm:flex-row sm:items-end sm:justify-between lg:px-10">
+        <div class="max-w-lg">
+          <p class="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-orange">
+            Resultados
+          </p>
+          <h2 class="font-display mt-2 text-[clamp(2rem,5vw,3rem)] leading-[1.05] text-cream">
+            Quem treina, <span class="text-orange">transforma</span>
+          </h2>
+          <p class="mt-3 text-sm text-muted">
+            Deslize e veja as transformações dos alunos.
+          </p>
+        </div>
+
+        <div class="flex gap-2">
+          <button
+            type="button"
+            class="flex h-10 w-10 items-center justify-center border border-white/15 text-cream transition hover:border-orange hover:text-orange"
+            (click)="prevResult()"
+            aria-label="Foto anterior"
+          >
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M19 12H5M12 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <button
+            type="button"
+            class="flex h-10 w-10 items-center justify-center border border-white/15 text-cream transition hover:border-orange hover:text-orange"
+            (click)="nextResult()"
+            aria-label="Próxima foto"
+          >
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div #resultsTrack class="results-track mt-8" (scroll)="onResultsScroll($event)">
+        @for (result of results; track result.id) {
+          <figure class="result-slide">
+            <img [src]="result.image" [alt]="'Resultado de ' + result.name" loading="lazy" />
+            <figcaption class="result-caption">
+              <p class="text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-orange">
+                {{ result.goal }}
+              </p>
+              <p class="mt-0.5 font-display text-xl text-cream">{{ result.name }}</p>
+            </figcaption>
+          </figure>
+        }
+      </div>
+
+      <div class="mt-4 flex justify-center gap-2 px-5">
+        @for (result of results; track result.id; let i = $index) {
+          <button
+            type="button"
+            class="h-1.5 transition-all"
+            [class.w-7]="resultIndex() === i"
+            [class.w-1.5]="resultIndex() !== i"
+            [class.bg-orange]="resultIndex() === i"
+            [class.bg-white/25]="resultIndex() !== i"
+            (click)="goToResult(i)"
+            [attr.aria-label]="'Ir para foto ' + (i + 1)"
+          ></button>
+        }
+      </div>
+
+      <div class="mt-10 px-5 text-center lg:px-10">
+        <a
+          [href]="whatsappUrl('Olá Hudson! Quero resultados como os dos seus alunos. Podemos agendar?')"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-cta btn-cta-lg cta-pulse"
+        >
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path
+              d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+            />
+          </svg>
+          Quero meu resultado também
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sobre -->
+  <section id="sobre" class="bg-ink py-16 lg:py-20">
+    <div class="mx-auto grid max-w-[1400px] gap-10 px-5 lg:grid-cols-2 lg:items-center lg:gap-16 lg:px-10">
+      <div class="relative">
+        <div class="absolute -left-3 top-5 hidden h-[calc(100%-2.5rem)] w-1 bg-orange sm:block" aria-hidden="true"></div>
+        <p class="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-orange">
+          Sobre o personal
+        </p>
+        <h2 class="font-display mt-2 text-[clamp(2rem,5vw,3rem)] leading-[1.05] text-cream">
+          Profissional.<br /><span class="text-orange">Comprometido.</span>
+        </h2>
+        <p class="mt-4 text-sm leading-relaxed text-muted sm:text-[0.95rem]">
+          Hudson Arruda é personal trainer registrado (CREF 075179-G/SP) e servidor público estadual
+          e municipal. Conhecimento técnico com a disciplina de quem leva o trabalho a sério.
+        </p>
+
+        <ul class="mt-7 space-y-3">
+          <li class="flex items-start gap-3 border-l-2 border-orange/40 pl-4">
+            <div>
+              <p class="text-sm font-semibold text-cream">CREF 075179-G/SP</p>
+              <p class="mt-0.5 text-xs text-muted">Registro profissional ativo</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-3 border-l-2 border-orange/40 pl-4">
+            <div>
+              <p class="text-sm font-semibold text-cream">Servidor público estadual e municipal</p>
+              <p class="mt-0.5 text-xs text-muted">Credibilidade e compromisso</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-3 border-l-2 border-orange/40 pl-4">
+            <div>
+              <p class="text-sm font-semibold text-cream">Treino + Nutrição</p>
+              <p class="mt-0.5 text-xs text-muted">Acompanhamento completo para o seu objetivo</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="relative overflow-hidden bg-gradient-to-br from-orange via-orange-deep to-ink p-1">
+        <div class="bg-ink-elevated p-7 sm:p-9">
+          <p class="font-display text-[clamp(1.75rem,4vw,2.5rem)] leading-[1.05] text-cream">
+            Pronto para<br /><span class="text-orange">começar?</span>
+          </p>
+          <p class="mt-4 text-sm leading-relaxed text-muted">
+            Manda uma mensagem no WhatsApp. Vamos alinhar seu objetivo, sua rotina e o melhor
+            caminho para o seu corpo.
+          </p>
+          <a
+            [href]="whatsappUrl()"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-cta btn-cta-lg cta-pulse mt-6 w-full justify-center sm:w-auto"
+          >
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+              />
+            </svg>
+            Falar com Hudson agora
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="relative overflow-hidden border-t border-white/5 py-16 lg:py-20">
+    <div
+      class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,92,0,0.2),transparent_55%)]"
+      aria-hidden="true"
+    ></div>
+    <div class="relative mx-auto max-w-2xl px-5 text-center lg:px-10">
+      <h2 class="font-display text-[clamp(2rem,5vw,3rem)] leading-[1.05] text-cream">
+        Seu próximo passo é uma <span class="text-orange">mensagem</span>
+      </h2>
+      <p class="mx-auto mt-4 max-w-md text-sm text-muted">
+        Agende pelo WhatsApp e comece com clareza: objetivo, plano e acompanhamento.
+      </p>
+      <a
+        [href]="whatsappUrl()"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn-cta btn-cta-lg cta-pulse mt-7"
+      >
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path
+            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+          />
+        </svg>
+        Agendar meu treino agora
       </a>
     </div>
   </section>
 </main>
 
-<footer class="border-t border-white/5 bg-ink py-10">
+<footer class="border-t border-white/5 bg-ink-soft py-8">
   <div
-    class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-5 text-center sm:flex-row sm:text-left lg:px-8"
+    class="mx-auto flex max-w-[1400px] flex-col items-center justify-between gap-4 px-5 text-center sm:flex-row sm:text-left lg:px-10"
   >
     <div>
       <p class="font-display text-xl text-cream">
         HUDSON <span class="text-orange">ARRUDA</span>
       </p>
-      <p class="mt-1 text-sm text-muted">Personal Trainer · CREF 075179-G/SP</p>
+      <p class="mt-0.5 text-xs font-semibold uppercase tracking-[0.16em] text-muted">
+        Personal Trainer · CREF 075179-G/SP
+      </p>
     </div>
     <a
       [href]="whatsappUrl()"
       target="_blank"
       rel="noopener noreferrer"
-      class="inline-flex items-center gap-2 text-sm font-semibold text-orange hover:text-orange-hot"
+      class="btn-cta btn-cta-sm"
     >
       <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
         <path
@@ -550,12 +491,11 @@
   </div>
 </footer>
 
-<!-- Floating WhatsApp -->
 <a
   [href]="whatsappUrl()"
   target="_blank"
   rel="noopener noreferrer"
-  class="fixed bottom-5 right-5 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg shadow-black/40 transition hover:scale-105"
+  class="fixed bottom-5 right-5 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg shadow-black/50 transition hover:scale-105"
   aria-label="Abrir WhatsApp"
 >
   <svg class="h-7 w-7" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">

@@ -1,14 +1,14 @@
 @import "tailwindcss";
 
 @theme {
-  --color-ink: #0a0a0a;
-  --color-ink-soft: #121212;
-  --color-ink-elevated: #1a1a1a;
+  --color-ink: #070707;
+  --color-ink-soft: #0f0f0f;
+  --color-ink-elevated: #161616;
   --color-orange: #ff5c00;
   --color-orange-hot: #ff7a1f;
-  --color-orange-deep: #e04f00;
-  --color-cream: #f5f0eb;
-  --color-muted: #a8a29e;
+  --color-orange-deep: #d94800;
+  --color-cream: #f4efe9;
+  --color-muted: #9c9590;
   --font-display: "Bebas Neue", sans-serif;
   --font-body: "Outfit", sans-serif;
 }
@@ -24,9 +24,10 @@ body {
   color: var(--color-cream);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 ::selection {
-  background: color-mix(in srgb, var(--color-orange) 40%, transparent);
+  background: color-mix(in srgb, var(--color-orange) 45%, transparent);
   color: white;
 }

@@ -1,12 +1,10 @@
 import { Component, ElementRef, HostListener, signal, viewChild } from '@angular/core';
 
-export interface ResultCard {
+export interface ResultPhoto {
   id: string;
+  image: string;
   name: string;
   goal: string;
-  metric: string;
-  detail: string;
-  period: string;
 }
 
 @Component({
@@ -16,8 +14,7 @@ export interface ResultCard {
   styleUrl: './app.css',
 })
 export class App {
-  /** Substitua pelo WhatsApp real com DDI (ex: 5511999999999) */
-  private readonly whatsappNumber = '5511999999999';
+  private readonly whatsappNumber = '5511951785732';
 
   private readonly resultsTrack = viewChild<ElementRef<HTMLElement>>('resultsTrack');
 
@@ -32,45 +29,18 @@ export class App {
     { label: 'Sobre', href: '#sobre' },
   ];
 
-  readonly results: ResultCard[] = [
-    {
-      id: '1',
-      name: 'Camila R.',
-      goal: 'Emagrecimento',
-      metric: '-9,4 kg',
-      detail:
-        'Redução de medidas e mais disposição no dia a dia, com treino e ajuste alimentar.',
-      period: '12 semanas',
-    },
-    {
-      id: '2',
-      name: 'Rafael M.',
-      goal: 'Hipertrofia',
-      metric: '+6,2 kg',
-      detail: 'Ganho de massa magra com progressão de carga e acompanhamento nutricional.',
-      period: '16 semanas',
-    },
-    {
-      id: '3',
-      name: 'Juliana S.',
-      goal: 'Recomposição',
-      metric: '-7 cm',
-      detail: 'Cintura mais definida, força aumentada e rotina sustentável fora da academia.',
-      period: '10 semanas',
-    },
-    {
-      id: '4',
-      name: 'Bruno T.',
-      goal: 'Emagrecimento',
-      metric: '-11 kg',
-      detail: 'Queima de gordura com método personalizado e suporte contínuo no WhatsApp.',
-      period: '14 semanas',
-    },
+  /** Troque os SVGs por fotos reais dos alunos em /public/resultados/ */
+  readonly results: ResultPhoto[] = [
+    { id: '1', image: '/resultados/1.svg', name: 'Aluno 1', goal: 'Emagrecimento' },
+    { id: '2', image: '/resultados/2.svg', name: 'Aluno 2', goal: 'Hipertrofia' },
+    { id: '3', image: '/resultados/3.svg', name: 'Aluno 3', goal: 'Recomposição' },
+    { id: '4', image: '/resultados/4.svg', name: 'Aluno 4', goal: 'Emagrecimento' },
+    { id: '5', image: '/resultados/5.svg', name: 'Aluno 5', goal: 'Hipertrofia' },
   ];
 
   @HostListener('window:scroll')
   onScroll(): void {
-    this.scrolled.set(window.scrollY > 24);
+    this.scrolled.set(window.scrollY > 20);
   }
 
   whatsappUrl(customMessage?: string): string {
@@ -95,25 +65,22 @@ export class App {
   }
 
   prevResult(): void {
-    const next = (this.resultIndex() - 1 + this.results.length) % this.results.length;
-    this.goToResult(next);
-    this.scrollToResult(next);
+    this.scrollResult(-1);
   }
 
   nextResult(): void {
-    const next = (this.resultIndex() + 1) % this.results.length;
-    this.goToResult(next);
-    this.scrollToResult(next);
+    this.scrollResult(1);
   }
 
   goToResult(index: number): void {
     this.resultIndex.set(index);
+    this.scrollToResult(index);
   }
 
   scrollResult(direction: number): void {
     const next =
       (this.resultIndex() + direction + this.results.length) % this.results.length;
-    this.goToResult(next);
+    this.resultIndex.set(next);
     this.scrollToResult(next);
   }
 
@@ -122,7 +89,7 @@ export class App {
     if (!track) return;
     const slide = track.children.item(index) as HTMLElement | null;
     if (!slide) return;
-    track.scrollTo({ left: slide.offsetLeft, behavior: 'smooth' });
+    track.scrollTo({ left: slide.offsetLeft - 16, behavior: 'smooth' });
   }
 
   onResultsScroll(event: Event): void {
@@ -130,12 +97,13 @@ export class App {
     const slides = Array.from(track.children) as HTMLElement[];
     if (!slides.length) return;
 
-    const scrollLeft = track.scrollLeft;
+    const center = track.scrollLeft + track.clientWidth / 2;
     let closest = 0;
     let minDist = Number.POSITIVE_INFINITY;
 
     slides.forEach((slide, index) => {
-      const dist = Math.abs(slide.offsetLeft - scrollLeft);
+      const slideCenter = slide.offsetLeft + slide.clientWidth / 2;
+      const dist = Math.abs(slideCenter - center);
       if (dist < minDist) {
         minDist = dist;
         closest = index;
