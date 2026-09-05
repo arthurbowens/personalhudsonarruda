@@ -114,11 +114,8 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 18%;
+  object-position: center top;
   display: block;
-  /* foto1.jpg veio com máscara circular — zoom cobre as bordas redondas */
-  transform: scale(1.22);
-  transform-origin: center 30%;
 }
 
 .hero-media::after {
@@ -182,19 +179,6 @@
   }
   55% {
     box-shadow: 0 0 0 14px rgba(255, 92, 0, 0);
-  }
-}
-
-.hero-media img {
-  animation: heroZoom 14s ease-out both;
-}
-
-@keyframes heroZoom {
-  from {
-    transform: scale(1.32);
-  }
-  to {
-    transform: scale(1.22);
   }
 }
 
